@@ -17,7 +17,5 @@ const estados_aceitacao = new Set(['q2']);
 const afd = new AFD(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
 
 export default function verificarPalavra(palavra) {
-    return afd.aceita(palavra);
+    return afd.aceita('011');// Saída: true
 }
-
-

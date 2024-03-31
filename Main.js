@@ -1,6 +1,6 @@
 //Importando nossas classes State e Automaton
-import State from './State';
-import Automaton from './Automaton';
+import State from 'State.js';
+import Automaton from 'Automaton.js';
 
 // Função principal do programa
 function main() {

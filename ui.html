@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFN Interface</title>
+</head>
+<body>
+    <div id="app">
+        <label for="states">Conjunto de Estados (separados por vírgula):</label>
+        <input type="text" id="states"><br><br>
+        
+        <label for="alphabet">Alfabeto (separado por vírgula):</label>
+        <input type="text" id="alphabet"><br><br>
+        
+        <label for="initial_state">Estado Inicial:</label>
+        <input type="text" id="initial_state"><br><br>
+        
+        <label for="accept_states">Conjunto de Estados de Aceitação (separados por vírgula):</label>
+        <input type="text" id="accept_states"><br><br>
+        
+        <label for="transitions">Transições (no formato 'estado,símbolo->estado'; separadas por vírgula):</label>
+        <input type="text" id="transitions"><br><br>
+        
+        <label for="input_string">Cadeia de Entrada:</label>
+        <input type="text" id="input_string"><br><br>
+        
+        <button onclick="processInput()">Processar</button>
+    </div>
+
+    <script>
+        function processInput() {
+            var states = document.getElementById("states").value.split(',');
+            var alphabet = document.getElementById("alphabet").value.split(',');
+            var initialState = document.getElementById("initial_state").value;
+            var acceptStates = document.getElementById("accept_states").value.split(',');
+            var transitions = document.getElementById("transitions").value.split(',');
+
+            console.log("Conjunto de Estados:", states);
+            console.log("Alfabeto:", alphabet);
+            console.log("Estado Inicial:", initialState);
+            console.log("Estados de Aceitação:", acceptStates);
+            console.log("Transições:", transitions);
+
+            var inputString = document.getElementById("input_string").value;
+            console.log("Cadeia de Entrada:", inputString);
+            // Implemente a lógica para processar a entrada e verificar se é aceita pelo AFN
+        }
+    </script>
+</body>
+</html>

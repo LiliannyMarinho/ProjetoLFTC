@@ -48,5 +48,5 @@ afne = AFNe(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao)
 
 # Testando algumas palavras
 print(afne.aceita('101'))   # Saída: True
-print(afne.aceita('0101'))  # Saída: False
+print(afne.aceita('010'))  # Saída: False
 print(afne.aceita('111'))   # Saída: True

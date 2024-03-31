@@ -53,7 +53,9 @@ const estados_aceitacao = new Set(['q2']);
 
 const afne = new AFNe(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
 
+var saida = document.getElementById('saida');
+
 // Testando algumas palavras
-console.log(afne.aceita('101'));   // Saída: true
-console.log(afne.aceita('010'));   // Saída: false
-console.log(afne.aceita('111'));   // Saída: true
+saida.innerHTML = afne.aceita('101'); // Saída: true
+saida.innerHTML += "<br>" + afne.aceita('010'); // Saída: false
+saida.innerHTML += "<br>" + afne.aceita('111'); // Saída: true

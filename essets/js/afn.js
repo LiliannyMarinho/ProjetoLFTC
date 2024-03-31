@@ -34,7 +34,9 @@ const estados_aceitacao = new Set(['q2']);
 
 const afn = new AFN(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
 
+var saida = document.getElementById('saida');
+
 // Testando algumas palavras
-console.log(afn.aceita('011'));   // Saída: true
-console.log(afn.aceita('010'));  // Saída: false
-console.log(afn.aceita('111'));   // Saída: true
+saida.innerHTML = afn.aceita('011'); // Saída: true
+saida.innerHTML += "<br>" + afn.aceita('010'); // Saída: false
+saida.innerHTML += "<br>" + afn.aceita('111'); // Saída: true

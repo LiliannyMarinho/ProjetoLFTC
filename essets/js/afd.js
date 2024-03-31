@@ -39,7 +39,9 @@ const estados_aceitacao = new Set(['q2']);
 
 const afd = new AFD(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
 
+var saida = document.getElementById('saida');
+
 // Testando algumas palavras
-console.log(afd.aceita('011'));  // Saída: true
-console.log(afd.aceita('101'));  // Saída: false
-console.log(afd.aceita('111'));  // Saída: true
+saida.innerHTML = afd.aceita('011'); // Saída: true
+saida.innerHTML += "<br>" + afd.aceita('101'); // Saída: false
+saida.innerHTML += "<br>" + afd.aceita('111'); // Saída: true

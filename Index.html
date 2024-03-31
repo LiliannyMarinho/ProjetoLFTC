@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste de Autômato</title>
+    <link rel="stylesheet" href="essets/css/style.css">
 </head>
 <body>
-    <div>
-        <label for="entrada">Palavra:</label>
-        <input type="text" id="entrada">
-        <button id="botao-testar">Testar</button>
-    </div>
-    
-    <div id="saida"></div>
-
-    <script src="verificador.js" type="module"></script> <!-- Importa a função de verificação -->
+    <header>
+        <nav class="menu">
+            <h1>Teste de Autômato</h1>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <div>
+                <label for="entrada">Palavra:</label>
+                <input type="text" id="entrada">
+                <button id="botao-testar">Testar</button>
+            </div>
+            
+            <div id="saida"></div>
+        </article>
+    </main>
+    <footer> 
+      	<section class="copy">Copyright &#169; <span id="copy"></span> Meu Site - Todos os Direitos Reservados.</section>
+    </footer>
+    <script src="essets/js/verificador.js"></script> <!-- Importa a função de verificação -->
     <script>
         // Obtém o botão de teste
         const botaoTestar = document.getElementById('botao-testar');

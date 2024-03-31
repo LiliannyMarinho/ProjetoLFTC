@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Autômatos</title>
+    <title>Teste de Autômato</title>
 </head>
 <body>
     <div>
         <label for="entrada">Palavra:</label>
-        <input type="text" id="entrada" >
+        <input type="text" id="entrada">
         <button onclick="testar()">Testar</button>
     </div>
     
     <div id="saida"></div>
-    <script src="essets/js/afn.js"></script>    
+
+    <script src="verificador.js" type="module"></script> <!-- Importa a função de verificação -->
+    <script>
+        // Obtém o botão de teste
+        const botaoTestar = document.getElementById('botao-testar');
+        // Adiciona um evento de clique ao botão
+        botaoTestar.addEventListener('click', function() {
+            // Obtém a entrada do usuário
+            const entrada = document.getElementById('entrada').value;
+            // Obtém o elemento de saída
+            const saida = document.getElementById('saida');
+            // Verifica se a palavra é aceita pelo autômato e exibe o resultado na saída
+            saida.textContent = verificarPalavra(entrada) ? 'Palavra aceita' : 'Palavra não aceita';
+        });
+    </script>
 </body>
 </html>

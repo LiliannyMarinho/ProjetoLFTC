@@ -39,8 +39,6 @@ class AFNe {
     }
 }
 
-// Exemplo de utilização:
-
 // Definindo um AFNe para reconhecer a linguagem {0, 1}* onde o último símbolo é sempre 1.
 const estados = new Set(['q0', 'q1', 'q2']);
 const alfabeto = new Set(['0', '1']);

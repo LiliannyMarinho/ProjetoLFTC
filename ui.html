@@ -1,51 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AFN Interface</title>
 </head>
 <body>
-    <div id="app">
-        <label for="states">Conjunto de Estados (separados por vírgula):</label>
-        <input type="text" id="states"><br><br>
-        
-        <label for="alphabet">Alfabeto (separado por vírgula):</label>
-        <input type="text" id="alphabet"><br><br>
-        
-        <label for="initial_state">Estado Inicial:</label>
-        <input type="text" id="initial_state"><br><br>
-        
-        <label for="accept_states">Conjunto de Estados de Aceitação (separados por vírgula):</label>
-        <input type="text" id="accept_states"><br><br>
-        
-        <label for="transitions">Transições (no formato 'estado,símbolo->estado'; separadas por vírgula):</label>
-        <input type="text" id="transitions"><br><br>
-        
-        <label for="input_string">Cadeia de Entrada:</label>
-        <input type="text" id="input_string"><br><br>
-        
-        <button onclick="processInput()">Processar</button>
-    </div>
+    <h2>Teste AFD</h2>
+    <h3 id="saidaAFD"></h3>
+    <h2>Teste AFN</h2>
+    <h3 id="saidaAFN"></h3>
+    <h2>Teste AFNe</h2>
+    <h3 id="saidaAFNe"></h3>
 
+    <script src="essets/js/automato.js"></script>
     <script>
-        function processInput() {
-            var states = document.getElementById("states").value.split(',');
-            var alphabet = document.getElementById("alphabet").value.split(',');
-            var initialState = document.getElementById("initial_state").value;
-            var acceptStates = document.getElementById("accept_states").value.split(',');
-            var transitions = document.getElementById("transitions").value.split(',');
+        // Definindo um AFNe para reconhecer a linguagem {0, 1}* onde o último símbolo é sempre 1.
+        const estados = new Set(['q0', 'q1', 'q2']);
+        const alfabeto = new Set(['0', '1']);
+        const transicoes = new Map([
+            ['q0,', new Set(['q1'])],
+            ['q0,0', new Set(['q0'])],
+            ['q0,1', new Set(['q0'])],
+            ['q1,1', new Set(['q2'])]
+        ]);
+        const estado_inicial = 'q0';
+        const estados_aceitacao = new Set(['q2']);
 
-            console.log("Conjunto de Estados:", states);
-            console.log("Alfabeto:", alphabet);
-            console.log("Estado Inicial:", initialState);
-            console.log("Estados de Aceitação:", acceptStates);
-            console.log("Transições:", transitions);
+        const aut = new automato(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
 
-            var inputString = document.getElementById("input_string").value;
-            console.log("Cadeia de Entrada:", inputString);
-            // Implemente a lógica para processar a entrada e verificar se é aceita pelo AFN
-        }
+        var afd = document.getElementById('saidaAFD'),
+            afn = document.getElementById('saidaAFN'),
+            afne = document.getElementById('saidaAFNe');
+
+        // Testando algumas palavras AFD
+        afd.innerHTML = aut.aceitaAFD('011'); // Saída: true
+        afd.innerHTML += "<br>" + aut.aceitaAFD('010'); // Saída: false
+        afd.innerHTML += "<br>" + aut.aceitaAFD('111'); // Saída: true
+
+        // Testando algumas palavras AFN
+        afn.innerHTML = aut.aceitaAFN('011'); // Saída: true
+        afn.innerHTML += "<br>" + aut.aceitaAFN('010'); // Saída: false
+        afn.innerHTML += "<br>" + aut.aceitaAFN('111'); // Saída: true
+
+        // Testando algumas palavras AFNe
+        afne.innerHTML = aut.aceitaAFNe('011'); // Saída: true
+        afne.innerHTML += "<br>" + aut.aceitaAFNe('010'); // Saída: false
+        afne.innerHTML += "<br>" + aut.aceitaAFNe('111'); // Saída: true
     </script>
 </body>
 </html>

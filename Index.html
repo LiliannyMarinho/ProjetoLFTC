@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste de Autômato</title>
     <link rel="stylesheet" href="essets/css/style.css">
+    <link rel="stylesheet" href="essets/css/main.css">
 </head>
 <body>
     <header>
@@ -14,12 +15,15 @@
     </header>
     <main>
         <article>
-            <div>
-                <label for="entrada">Palavra:</label>
-                <input type="text" id="entrada">
+            <div class="app">
+                <input type="text" id="states" placeholder="Conjunto de Estados (separados por vírgula)"><br>
+                <input type="text" id="alphabet" placeholder="Alfabeto (separado por vírgula)"><br>
+                <input type="text" id="initial_state" placeholder="Estado Inicial"><br>
+                <input type="text" id="accept_states" placeholder="Conjunto de Estados de Aceitação (separados por vírgula)"><br>                
+                <input type="text" id="transitions" placeholder="Transições ('estado,símbolo->estado';)"><br>
+                <input type="text" id="input_string" placeholder="Cadeia de Entrada"><br>                
                 <button id="botao-testar">Testar</button>
-            </div>
-            
+            </div>            
             <div id="saida"></div>
         </article>
     </main>

@@ -4,28 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automato</title>
-    <link rel="stylesheet" href="essets/css/main.css">
-    <style>
-        div#saidaAFD, div#saidaAFN, div#saidaAFNe{
-            background-color: #dcdcdc;
-            width: auto;
-            float: left;
-            margin: 10px 0 0 10px;
-            padding: 10px 20px;
-            border: 1px solid #4e4e4e;
-        }
-        @media screen and (max-width: 600px) {
-            div#saidaAFD, div#saidaAFN, div#saidaAFNe{
-                width: calc(100% - 30px);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="essets/css/style.css">    
 </head>
-<body>    
-    <div id="saidaAFD"><h2>Teste AFD</h2></div>    
-    <div id="saidaAFN"><h2>Teste AFN</h2></div>    
-    <div id="saidaAFNe"><h2>Teste AFNe</h2></div>
-
+<body>
+    <header><h3 class="logo">Automato</h3></header>
+    <main>
+        <article>
+            <div class="row col-4" id="saidaAFD"><h2>Teste AFD</h2></div>    
+            <div class="row col-4" id="saidaAFN"><h2>Teste AFN</h2></div>    
+            <div class="row col-4" id="saidaAFNe"><h2>Teste AFNe</h2></div>
+        </article>
+    </main>   
+    <footer>
+        <p class="copy">Meu Site</p>
+    </footer>
     <script src="essets/js/automato.js"></script>
     <script src="essets/js/main.js"></script>
 </body>

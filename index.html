@@ -16,12 +16,22 @@
     <main>
         <article>
             <div class="app">
+                <!-- Inputs para definição do autômato -->
                 <input type="text" id="states" placeholder="Conjunto de Estados (separados por vírgula)"><br>
                 <input type="text" id="alphabet" placeholder="Alfabeto (separado por vírgula)"><br>
                 <input type="text" id="initial_state" placeholder="Estado Inicial"><br>
                 <input type="text" id="accept_states" placeholder="Conjunto de Estados de Aceitação (separados por vírgula)"><br>                
                 <input type="text" id="transitions" placeholder="Transições ('estado,símbolo->estado';)"><br>
-                <input type="text" id="input_string" placeholder="Cadeia de Entrada"><br>                
+                <input type="text" id="input_string" placeholder="Cadeia de Entrada"><br>
+
+                <!-- Seleção do método de verificação -->
+                <input type="radio" id="afd" name="method" value="afd">
+                <label for="afd">AFD</label>
+                <input type="radio" id="afn" name="method" value="afn">
+                <label for="afn">AFN</label>
+                <input type="radio" id="afne" name="method" value="afne">
+                <label for="afne">AFNe</label><br>
+                
                 <button id="botao-testar">Testar</button>
             </div>            
             <div id="saida"></div>
@@ -30,18 +40,61 @@
     <footer> 
       	<section class="copy">Copyright &#169; <span id="copy"></span> Meu Site - Todos os Direitos Reservados.</section>
     </footer>
-    <script src="essets/js/verificador.js"></script> <!-- Importa a função de verificação -->
+    <script src="essets/js/automato.js"></script> <!-- Importa a classe automato -->
     <script>
         // Obtém o botão de teste
         const botaoTestar = document.getElementById('botao-testar');
+
         // Adiciona um evento de clique ao botão
         botaoTestar.addEventListener('click', function() {
             // Obtém a entrada do usuário
-            const entrada = document.getElementById('entrada').value;
+            const entrada = document.getElementById('input_string').value;
+
+            // Obtém o método de verificação selecionado pelo usuário
+            let metodoVerificacao;
+            const radios = document.getElementsByName('method');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    metodoVerificacao = radios[i].value;
+                    break;
+                }
+            }
+
+            // Instancia um objeto automato
+            const automatoInstancia = new automato(
+                new Set(document.getElementById('states').value.split(',')),
+                new Set(document.getElementById('alphabet').value.split(',')),
+                new Map(
+                    document.getElementById('transitions').value.split(';').map(transition => {
+                        const [sourceAndSymbol, destination] = transition.split('->');
+                        const [sourceState, symbol] = sourceAndSymbol.split(',');
+                        return [`${sourceState},${symbol}`, new Set(destination.split(','))];
+                    })
+                ),
+                document.getElementById('initial_state').value,
+                new Set(document.getElementById('accept_states').value.split(','))
+            );
+
             // Obtém o elemento de saída
             const saida = document.getElementById('saida');
-            // Verifica se a palavra é aceita pelo autômato e exibe o resultado na saída
-            saida.textContent = verificarPalavra(entrada) ? 'Palavra aceita' : 'Palavra não aceita';
+
+            // Verifica se a palavra é aceita pelo autômato de acordo com o método escolhido pelo usuário
+            let mensagem;
+            switch (metodoVerificacao) {
+                case 'afd':
+                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFD: ${automatoInstancia.aceitaAFD(entrada)}`;
+                    break;
+                case 'afn':
+                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFN: ${automatoInstancia.aceitaAFN(entrada)}`;
+                    break;
+                case 'afne':
+                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFNe: ${automatoInstancia.aceitaAFNe(entrada)}`;
+                    break;
+                default:
+                    mensagem = 'Selecione um método de verificação.';
+            }
+            // Exibe o resultado na saída
+            saida.textContent = mensagem;
         });
     </script>
 </body>

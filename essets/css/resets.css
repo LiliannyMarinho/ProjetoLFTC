@@ -1,0 +1,71 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, b, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+table, table td {
+    padding:0;
+    border:none;
+    border-collapse:collapse;
+}
+img {
+    vertical-align:top;
+}
+embed {
+    vertical-align:top;
+}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {
+    display: block;
+}
+mark, rp, rt, ruby, summary, time {
+    display: inline;
+}
+input, textarea {
+    border:0;
+    padding:0;
+    margin:0;
+    outline: 0;
+}
+iframe {
+    border:0;
+    margin:0;
+    padding:0;
+}
+input, textarea, select {
+    margin: 0;
+    padding: 0px;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}

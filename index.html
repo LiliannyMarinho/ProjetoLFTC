@@ -3,99 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Autômato</title>
-    <link rel="stylesheet" href="essets/css/style.css">
-    <link rel="stylesheet" href="essets/css/main.css">
+    <title>QaT - Teste Automato</title>    
+    <link rel="shortcut icon" href="essets/img/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="essets/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="essets/css/resets.css">
+    <link rel="stylesheet" href="essets/css/styles.css">
 </head>
 <body>
-    <header>
-        <nav class="menu">
-            <h1>Teste de Autômato</h1>
-        </nav>
-    </header>
-    <main>
+<header>
+    <section>
+        <div class="logo"><a href="./"><img src="essets/img/logo.svg" alt="QaT"></a></div>
+        <div class="menu">
+            <ul>
+                <li><a href="./">Home</a></li>
+                <li><a href="./about.html">Sobre</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </section>
+</header>
+<main>
+    <section>
+        <nav>
+            <h2>Como funciona?</h2>
+            <ul>
+                <li>Preencha a entrada com os estados do automatos, separdos por vírgula.</li>
+                <p>Ex.: q0,q1,...,qn</p>
+                <li>Ensira o alfabeto, separado por vírgula.</li>
+                <p>Ex.: 0,1</p>
+                <li>Ensira o estado inicial.</li>
+                <p>Ex.: q0</p>
+                <li>Ensira quais os estados de aceitação. Podendo ser um ou mais, separados por vírgula.</li>
+                <p>Ex.: q2,q3</p>
+                <li>Informe as transições que o automato executa, como mostra o exemplo.</li>
+                <p>Ex.: q0,0,q1;q1,0,q1;</p>
+                <li>Informe a Palavra para ser testada.</li>
+                <p>Ex.: 011</p>
+                <li>Selecione entre AFD, AFN e AFNe, marcando a caixa com a identificação conveniente.</li>
+            </ul>
+        </nav>  
         <article>
-            <div class="app">
-                <!-- Inputs para definição do autômato -->
-                <input type="text" id="states" placeholder="Conjunto de Estados (separados por vírgula)"><br>
-                <input type="text" id="alphabet" placeholder="Alfabeto (separado por vírgula)"><br>
-                <input type="text" id="initial_state" placeholder="Estado Inicial"><br>
-                <input type="text" id="accept_states" placeholder="Conjunto de Estados de Aceitação (separados por vírgula)"><br>                
-                <input type="text" id="transitions" placeholder="Transições ('estado,símbolo->estado';)"><br>
-                <input type="text" id="input_string" placeholder="Cadeia de Entrada"><br>
-
-                <!-- Seleção do método de verificação -->
-                <input type="radio" id="afd" name="method" value="afd">
-                <label for="afd">AFD</label>
-                <input type="radio" id="afn" name="method" value="afn">
-                <label for="afn">AFN</label>
-                <input type="radio" id="afne" name="method" value="afne">
-                <label for="afne">AFNe</label><br>
-                
-                <button id="botao-testar">Testar</button>
-            </div>            
-            <div id="saida"></div>
+            <table class="tb-content">
+                <tr><th colspan="2"><h2>Teste Autômato</h2></th></tr>						
+                <tr><td> 
+                    <input type="text" id="states" placeholder="Conjunto de Estados">
+                </td><td> 
+                    <input type="text" id="alphabet" placeholder="Alfabeto">
+                </td></tr>
+                <tr><td>
+                    <input type="text" id="accept_states" placeholder="Estados de Aceitação">
+                </td><td>
+                    <input type="text" id="initial_state" placeholder="Estado Inicial">
+                </td></tr>
+                <tr><td>
+                    <input type="text" id="transitions" placeholder="Transições">
+                </td><td>
+                    <input type="text" id="input_string" placeholder="Palavra de Entrada">
+                </td></tr>
+                <tr>
+                    <td class="tbr">
+                        <input type="radio" id="afd" name="method" value="afd"><label for="afd">AFD</label>
+                        <input type="radio" id="afn" name="method" value="afn"><label for="afn">AFN</label>
+                        <input type="radio" id="afne" name="method" value="afne"><label for="afne">AFNe</label>
+                    </td>
+                    <td class="tbb">
+                        <button id="botao-testar">Testar</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="bg-ativo">
+                <div class="saida">
+                    <div id="close" title="Fechar">&#215;</div>
+                    <div id="saida"></div>
+                </div>
+               
+            </div>
         </article>
-    </main>
-    <footer> 
-      	<section class="copy">Copyright &#169; <span id="copy"></span> Meu Site - Todos os Direitos Reservados.</section>
-    </footer>
-    <script src="essets/js/automato.js"></script> <!-- Importa a classe automato -->
-    <script>
-        // Obtém o botão de teste
-        const botaoTestar = document.getElementById('botao-testar');
-
-        // Adiciona um evento de clique ao botão
-        botaoTestar.addEventListener('click', function() {
-            // Obtém a entrada do usuário
-            const entrada = document.getElementById('input_string').value;
-
-            // Obtém o método de verificação selecionado pelo usuário
-            let metodoVerificacao;
-            const radios = document.getElementsByName('method');
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    metodoVerificacao = radios[i].value;
-                    break;
-                }
-            }
-
-            // Instancia um objeto automato
-            const automatoInstancia = new automato(
-                new Set(document.getElementById('states').value.split(',')),
-                new Set(document.getElementById('alphabet').value.split(',')),
-                new Map(
-                    document.getElementById('transitions').value.split(';').map(transition => {
-                        const [sourceAndSymbol, destination] = transition.split('->');
-                        const [sourceState, symbol] = sourceAndSymbol.split(',');
-                        return [`${sourceState},${symbol}`, new Set(destination.split(','))];
-                    })
-                ),
-                document.getElementById('initial_state').value,
-                new Set(document.getElementById('accept_states').value.split(','))
-            );
-
-            // Obtém o elemento de saída
-            const saida = document.getElementById('saida');
-
-            // Verifica se a palavra é aceita pelo autômato de acordo com o método escolhido pelo usuário
-            let mensagem;
-            switch (metodoVerificacao) {
-                case 'afd':
-                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFD: ${automatoInstancia.aceitaAFD(entrada)}`;
-                    break;
-                case 'afn':
-                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFN: ${automatoInstancia.aceitaAFN(entrada)}`;
-                    break;
-                case 'afne':
-                    mensagem = `Palavra ${entrada} é aceita pelo autômato AFNe: ${automatoInstancia.aceitaAFNe(entrada)}`;
-                    break;
-                default:
-                    mensagem = 'Selecione um método de verificação.';
-            }
-            // Exibe o resultado na saída
-            saida.textContent = mensagem;
-        });
-    </script>
+    </section>
+</main>
+<footer>
+    <section class="copy">Copyright &#169; Qat - Todos os Direitos Reservados.</section>
+</footer>
+<script src="essets/js/automato.js"></script>
+<script src="essets/js/main.js"></script>
 </body>
 </html>

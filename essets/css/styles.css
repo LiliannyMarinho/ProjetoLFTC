@@ -505,6 +505,16 @@ main section .full .name {
    margin: 1em 0 0 0;
    list-style-type: none;
 }
+main section .full a, main section .full a:visited {
+   color: #005eaa;
+   text-decoration: none;
+   outline: none;
+}
+main section .full a:hover, main section .full a:active {
+   color: #00449c;
+   text-decoration: none;
+   outline: none;
+}
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {

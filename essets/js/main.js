@@ -37,7 +37,7 @@ env.onclick = () => {
                 transicoes.set(key, proximoEstado);
             });
         }
-        console.log(transicoes);
+        
         // Criando um objeto automato com os dados fornecidos
         const automatoInstancia = new automato(estados, alfabeto, transicoes, estado_inicial, estados_aceitacao);
         
